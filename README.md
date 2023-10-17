@@ -1,2 +1,2 @@
 # CodeForces
-learn code !
+coding till die
