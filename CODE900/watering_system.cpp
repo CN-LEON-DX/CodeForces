@@ -1,23 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+using ll = long long;
 
 int main() {
-    int n, a, b;
-    cin >> n >> a >> b;
-    vector<int> arr(n);
-    for (int &x : arr) cin >> x;
-    sort(arr.begin()+1, arr.end());
-    int sum = accumulate(arr.begin(), arr.end(), 0);
-    int cnt = 0;
-    double a1 = a;
-    while (a1*arr[0] < b*sum) {
-        if (n-1-cnt<=0) break;
-        cnt++;
-        sum -= arr[n-1-cnt];
+    ll n,a,b,total=0;
+    vector<ll> s;
+    cin>>n>>a>>b;
+    for(ll i=0,temp;i<n;i++)
+    {
+        cin>>temp;
+        s.emplace_back(temp);
+        total+=temp;
     }
+    sort(s.begin()+1,s.end(),greater<ll> ());
+    if((a*s[0])/total>=b)
+    {
+        cout<<0<<endl;
+        return 0;
+    }
+    for(ll i=1;i<n;i++)
+    {
 
-    cout << cnt << endl;
-
+        total-=s[i];
+        if((a*s[0])/total>=b)
+        {
+            cout<<i<<endl;
+            break;
+        }
+    }
     return 0;
 }
